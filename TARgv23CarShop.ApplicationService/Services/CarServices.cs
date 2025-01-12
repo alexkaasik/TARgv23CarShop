@@ -44,5 +44,22 @@ namespace TARgv23CarShop.ApplicationService.Services
 
             return car;
         }
+
+        public async Task<Car> Update(CarDto dto)
+        {
+            Car domain = new();
+
+            domain.CarId = dto.CarId;
+            domain.CarName = dto.CarName;
+            domain.CarPrice = dto.CarPrice;
+            domain.CarYear = dto.CarYear;
+            domain.CreatedAt = dto.CreatedAt;
+            domain.ModifiedAt = DateTime.Now;
+
+            _context.Cars.Update(domain);
+            await _context.SaveChangesAsync();
+
+            return domain;
+        }
     }
 }

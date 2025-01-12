@@ -88,5 +88,49 @@ namespace TARgv23CarShop.Controllers
 
             return RedirectToAction(nameof(Index), vm);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var car = await _carServices.DetailsAsync(id);
+
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            var vm = new CarCreateAndUpdateViewModel();
+
+            vm.CarId = car.CarId;
+            vm.CarName = car.CarName;
+            vm.CarPrice = car.CarPrice;
+            vm.CarYear = car.CarYear;
+
+            return View("CreateAndUpdate", vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(CarCreateAndUpdateViewModel vm)
+        {
+            var dto = new CarDto()
+            {
+
+                CarId = vm.CarId,
+                CarName = vm.CarName,
+                CarPrice = vm.CarPrice,
+                CarYear = vm.CarYear,
+                CreatedAt = vm.CreatedAt,
+                ModifiedAt = vm.ModifiedAt,
+            };
+
+
+            var result = await _carServices.Update(dto);
+
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
