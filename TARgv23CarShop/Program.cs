@@ -1,3 +1,6 @@
+using TARgv23CarShop.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace TARgv23CarShop
 {
     public class Program
@@ -8,6 +11,9 @@ namespace TARgv23CarShop
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<TARgv23CarShopContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
