@@ -8,7 +8,7 @@ namespace TARgv23CarShop.CarTest
     public class CarTest : TestBase
     {
         [Fact]
-        public async Task ShouldNot_AddEmptyCar_WhenReturnResult()
+        public async Task CreateDataTest()
         {
             //Arrange
             CarDto dto = new();
