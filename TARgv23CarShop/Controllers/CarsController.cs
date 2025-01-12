@@ -59,5 +59,13 @@ namespace TARgv23CarShop.Controllers
 
             return View(vm);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            CarCreateAndUpdateViewModel car = new();
+
+            return View("CreateAndUpdate", car);
+        }
     }
 }
