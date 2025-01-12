@@ -1,3 +1,4 @@
+using System.Xml;
 using TARgv23CarShop.Core.Domain;
 using TARgv23CarShop.Core.Dto;
 using TARgv23CarShop.Core.ServiceInterface;
@@ -24,6 +25,33 @@ namespace TARgv23CarShop.CarTest
 
             //Assert
             Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async Task GetDetails()
+        { 
+            CarDto carDto = MockCarData();
+            var car = await Svc<ICarServices>().Create(carDto);
+
+            var result = await Svc<ICarServices>().DetailsAsync((Guid)car.CarId);
+
+            Assert.NotNull(result); 
+        }
+
+
+
+        private CarDto MockCarData()
+        {
+            CarDto car = new()
+            {
+                CarName = "asd",
+                CarPrice = 100,
+                CarYear = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                ModifiedAt = DateTime.Now,
+            };
+
+            return car;
         }
     }
 }
