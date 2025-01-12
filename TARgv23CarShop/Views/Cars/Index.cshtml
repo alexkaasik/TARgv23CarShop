@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TARgv23CarShop.Models.Car.CarIndexViewModel>
+
+@{
+    ViewData["Title"] = "Car Index";
+    int RowNumber = 1;
+}
+
+<div class="h1">
+    Car Index
+</div>
+
+<form method="post">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Year</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var car in Model)
+            {
+                <tr>
+                    <td>@RowNumber</td>
+                    <td>@car.CarName</td>
+                    <td>@car.CarPrice</td>
+                    <td>@car.CarYear</td>
+                    <td>
+                    </td>
+                </tr>
+
+                RowNumber++;
+            }
+        </tbody>
+    </table>
+</form>
