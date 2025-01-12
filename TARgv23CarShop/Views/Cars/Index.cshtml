@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TARgv23CarShop.Models.Car.CarIndexViewModel>
+﻿@model IEnumerable<TARgv23CarShop.Models.Cars.CarIndexViewModel>
 
 @{
     ViewData["Title"] = "Car Index";
@@ -29,6 +29,7 @@
                     <td>@car.CarPrice</td>
                     <td>@car.CarYear</td>
                     <td>
+                        <a asp-action="details" asp-controller="cars" asp-route-id="@car.CarId" class="btn btn-info">Details</a>
                     </td>
                 </tr>
 

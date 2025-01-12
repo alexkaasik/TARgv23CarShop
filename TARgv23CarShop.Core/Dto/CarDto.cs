@@ -1,6 +1,6 @@
-﻿namespace TARgv23CarShop.Models.Cars
+﻿namespace TARgv23CarShop.Core.Dto
 {
-    public class CarIndexViewModel
+    public class CarDto
     {
         public Guid? CarId { get; set; }
 
