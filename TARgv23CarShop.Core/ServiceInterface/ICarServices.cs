@@ -10,5 +10,7 @@ namespace TARgv23CarShop.Core.ServiceInterface
         Task<Car> Create(CarDto dto);
 
         Task<Car> Update(CarDto dto);
+
+        Task<Car> Delete(Guid id);
     }
 }

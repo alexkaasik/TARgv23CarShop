@@ -132,5 +132,41 @@ namespace TARgv23CarShop.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+    
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var car = await _carServices.DetailsAsync(id);
+
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            var vm = new CarDeleteViewModel();
+
+            vm.CarId = car.CarId;
+            vm.CarName = car.CarName;
+            vm.CarPrice = car.CarPrice;
+            vm.CarYear = car.CarYear;
+            vm.CreatedAt = car.CreatedAt;
+            vm.ModifiedAt = car.ModifiedAt; 
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        // Some reason Id is show's all zero's, need to find a fix later.
+        public async Task<IActionResult> DeleteConfirmation(Guid id)
+        {
+            
+            var car = await _carServices.Delete(id);
+
+            if (car == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

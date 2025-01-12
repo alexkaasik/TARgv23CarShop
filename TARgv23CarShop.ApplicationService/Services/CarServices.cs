@@ -61,5 +61,16 @@ namespace TARgv23CarShop.ApplicationService.Services
 
             return domain;
         }
+
+        public async Task<Car> Delete(Guid id)
+        {
+            var car = await _context.Cars
+                .FirstOrDefaultAsync(x => x.CarId == id);
+
+            _context.Cars.Remove(car);
+            await _context.SaveChangesAsync();
+
+            return car;
+        }
     }
 }
