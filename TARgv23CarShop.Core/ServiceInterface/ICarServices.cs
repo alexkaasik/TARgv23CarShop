@@ -6,5 +6,7 @@ namespace TARgv23CarShop.Core.ServiceInterface
     public interface ICarServices
     {
         Task<Car> DetailsAsync(Guid id);
+
+        Task<Car> Create(CarDto dto);
     }
 }

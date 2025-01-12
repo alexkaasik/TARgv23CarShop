@@ -67,5 +67,26 @@ namespace TARgv23CarShop.Controllers
 
             return View("CreateAndUpdate", car);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CarCreateAndUpdateViewModel vm)
+        {
+            var dto = new CarDto()
+            {
+                CarId = vm.CarId,
+                CarName = vm.CarName,
+                CarPrice = vm.CarPrice,
+                CarYear = vm.CarYear,
+            };
+
+            var result = await _carServices.Create(dto);
+
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index), vm);
+        }
     }
 }

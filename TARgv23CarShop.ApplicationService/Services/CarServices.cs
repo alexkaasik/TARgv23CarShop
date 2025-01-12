@@ -26,5 +26,23 @@ namespace TARgv23CarShop.ApplicationService.Services
 
             return result;
         }
+
+        public async Task<Car> Create(CarDto dto)
+        {
+            Car car = new();
+
+            car.CarId = Guid.NewGuid();
+            car.CarName = dto.CarName;
+            car.CarPrice = dto.CarPrice;
+            car.CarYear = dto.CarYear;
+            car.CreatedAt = DateTime.Now;
+            car.ModifiedAt = DateTime.Now;
+            
+
+            await _context.Cars.AddAsync(car);
+            await _context.SaveChangesAsync();
+
+            return car;
+        }
     }
 }
