@@ -27,25 +27,63 @@ namespace TARgv23CarShop.CarTest
             Assert.NotNull(result);
         }
 
-        [Fact]
         public async Task GetDetails()
-        { 
+        {
             CarDto carDto = MockCarData();
             var car = await Svc<ICarServices>().Create(carDto);
 
             var result = await Svc<ICarServices>().DetailsAsync((Guid)car.CarId);
 
-            Assert.NotNull(result); 
+            Assert.NotNull(result);
         }
 
+        [Fact]
+        public async Task UpdateData()
+        {
 
+            var guidDb = Guid.Parse("2F39BA90-3C52-4DA9-69EA-08DD33187518");
+            var guidNew = Guid.NewGuid();
+
+            CarDto dto = MockCarData();
+
+            Car domain = new();
+
+            domain.CarId = guidNew;
+            domain.CarName = "adsg";
+            domain.CarPrice = 142;
+            domain.CarYear = DateTime.Now;
+            domain.CreatedAt = DateTime.UtcNow;
+            domain.ModifiedAt = DateTime.UtcNow;
+
+            await Svc<ICarServices>().Update(dto);
+
+            Assert.Equal(domain.CarId, guidNew);
+            Assert.DoesNotMatch(domain.CarName, dto.CarName);
+            Assert.NotEqual(domain.CarPrice, dto.CarPrice);
+            Assert.NotEqual(domain.CarYear, dto.CarYear);
+
+        }
 
         private CarDto MockCarData()
         {
             CarDto car = new()
             {
                 CarName = "asd",
-                CarPrice = 100,
+                CarPrice = 123-2f,
+                CarYear = DateTime.Now,
+                CreatedAt = DateTime.Now,
+                ModifiedAt = DateTime.Now,
+            };
+
+            return car;
+        }
+
+        private CarDto MockCarDataToUpdate()
+        {
+            CarDto car = new()
+            {
+                CarName = "cna890wp",
+                CarPrice = 51097,
                 CarYear = DateTime.Now,
                 CreatedAt = DateTime.Now,
                 ModifiedAt = DateTime.Now,
