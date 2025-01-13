@@ -5,45 +5,44 @@
     ViewData["Title"] = "Car Delete";
 }
 
-<h1>Delete</h1>
+<h1>Car Delete</h1>
 
 <div>
-    <h4>Car</h4>
     <hr />
-    <dl class="row">
-        <div class="form-group row">
-            <label asp-for="CarId" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.CarId)
-        </div>
+    <div class="table-wrapper">
+        <table>
 
-        <div class="form-group row">
-            <label asp-for="CarName" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.CarName)
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="CarPrice" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.CarPrice)
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="CarYear" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.CarYear)
-        </div>
-        <div class="form-group row">
-            <label asp-for="CreatedAt" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </div>
-
-        <div class="form-group row">
-            <label asp-for="ModifiedAt" class="col-sm-2 col-form-label"></label>
-            @Html.DisplayFor(model => model.ModifiedAt)
-        </div>
-
-        <form asp-action="DeleteConfirmation">
-            <input type="hidden" asp-for="CarId" />
-            <input type="submit" value="Delete" class="btn btn-danger" />
-            <a asp-action="Index" asp-controller="Cars" class="btn btn-success">Back</a>
-        </form>
-    </dl>
+            <tr>
+                <td><label class="col-sm-2 col-form-label">ID</label></td>
+                <td><label>@Html.DisplayFor(model => model.CarId)</label></td>
+            </tr>
+            <tr>
+                <td><label class="col-sm-2 col-form-label">Name</label></td>
+                <td><label>@Html.DisplayFor(model => model.CarName)</label></td>
+            </tr>
+            <tr>
+                <td><label class="col-sm-2 col-form-label">Year model</label></td>
+                <td><label>@Html.DisplayFor(model => model.CarYear)</label></td>
+            </tr>
+            <tr>
+                <td><label class="col-sm-2 col-form-label">Price</label></td>
+                <td><label>@Html.DisplayFor(model => model.CarPrice)</label></td>
+            </tr>
+            <tr>
+                <td><label class="col-sm-2 col-form-label">Created At</label></td>
+                <td><label>@Html.DisplayFor(model => model.CreatedAt)</label></td>
+            </tr>
+            <tr>
+                <td><label class="col-sm-2 col-form-label">Modified At</label></td>
+                <td><label>@Html.DisplayFor(model => model.ModifiedAt)</label></td>
+            </tr>
+        </table>
+    </div>
+    
+    <form asp-action="DeleteConfirmation">
+        <input type="hidden" asp-for="CarId" />
+        <input type="submit" value="Delete" class="button danger" />
+        <a asp-action="Index" asp-controller="Cars" class="button success">Back</a>
+    </form>
+    
 </div>

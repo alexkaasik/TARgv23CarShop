@@ -2,12 +2,16 @@
 
 @if (Model.CarId.HasValue)
 {
-    <h1>Update</h1>
+    <h1>Car Update</h1>
+    ViewData["Title"] = "Car Update";
 }
 else
 {
-    <h1>Create</h1>
+    <h1>Car Create</h1>
+    ViewData["Title"] = "Car Create";
 }
+
+<hr/>
 
 <div>
     <form method="post" enctype="multipart/form-data">
@@ -15,54 +19,29 @@ else
         <input asp-for="CreatedAt" type="hidden" />
         <input asp-for="ModifiedAt" type="hidden" />
 
-        <div class="form-group row">
-            <label asp-for="CarName" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="CarName" class="form-control" />
-            </div>
+        <div class="field">
+            <label>Name</label>
+            <input asp-for="CarName" />
         </div>
 
-        <div class="form-group row">
-            <label asp-for="CarPrice" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="CarPrice" class="form-control" />
-            </div>
+        <div class="field">
+            <label>Price</label>
+            <input asp-for="CarPrice" />
         </div>
 
-        <div class="form-group row">
-            <label asp-for="CarYear" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="CarYear" class="form-control" />
-            </div>
+        <div class="field">
+            <label>Year</label>
+            <input asp-for="CarYear" />
         </div>
 
         @if (Model.CarId.HasValue)
         {
-            <input asp-action="update" asp-controller="cars" type="submit" class="btn btn-primary" value="Update" />
+            <input asp-action="update" asp-controller="cars" type="submit" class="button primary" value="Update" />
         }
         else
         {
-            <input asp-action="create" asp-controller="cars" type="submit" class="btn btn-primary" value="Create" />
+            <input asp-action="create" asp-controller="cars" type="submit" class="button primary" value="Create" />
         }
-        <input asp-action="index" asp-controller="cars" type="submit" class="btn btn-outline-secondary" value="Back" />
+        <input asp-action="index" asp-controller="cars" type="submit" class="button success" value="Back" />
     </form>
 </div>
-
-
-@section Scripts
-{
-    <script>
-        $(document).ready(function () {
-            $('.custom-file-input').on("change", function () {
-                var fileLabel = $(this).next('.custom-file-label');
-                var files = $(this)[0].files;
-                if (files.length > 1) {
-                    fileLabel.html(files.length + ' files selected');
-                }
-                else if (files.length == 1) {
-                    fileLabel.html(files[0].name);
-                }
-            });
-        });
-    </script>
-}

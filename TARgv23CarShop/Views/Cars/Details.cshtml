@@ -4,40 +4,69 @@
     ViewData["Title"] = "Car Detail";
 }
 
-<h1>Details</h1>
+<h1>Car Details</h1>
 
 <div>
-    <h4>Car</h4>
     <hr />
-    <dl class="row">
+
+	<div class="table-wrapper">
+		<table>
+			
+			<tr>
+                <td><label class="col-sm-2 col-form-label">ID</label></td>
+                <td><label>@Html.DisplayFor(model => model.CarId)</label></td>
+			</tr>
+			<tr>
+                <td><label class="col-sm-2 col-form-label">Name</label></td>
+                <td><label>@Html.DisplayFor(model => model.CarName)</label></td>
+			</tr>
+			<tr>
+                <td><label class="col-sm-2 col-form-label">Year model</label></td>
+                <td><label>@Html.DisplayFor(model => model.CarYear)</label></td>
+			</tr>
+			<tr>
+                <td><label class="col-sm-2 col-form-label">Price</label></td>
+                <td><label>@Html.DisplayFor(model => model.CarPrice)</label></td>
+			</tr>
+			<tr>
+                <td><label class="col-sm-2 col-form-label">Created At</label></td>
+                <td><label>@Html.DisplayFor(model => model.CreatedAt)</label></td>
+			</tr>
+            <tr>
+                <td><label class="col-sm-2 col-form-label">Modified At</label></td>
+                <td><label>@Html.DisplayFor(model => model.ModifiedAt)</label></td>
+            </tr>
+		</table>
+	</div>
+    
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">ID</label>
-            @Html.DisplayFor(model => model.CarId)
+            
+            
         </div>
 
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Name</label>
-            @Html.DisplayFor(model => model.CarName)
+            
+             
         </div>
 
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Year model</label>
-            @Html.DisplayFor(model => model.CarYear)
+            
+            
         </div>
 
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Price</label>
-            @Html.DisplayFor(model => model.CarPrice)
+            
+            
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Created At</label>
-            @Html.DisplayFor(model => model.CreatedAt)
+            
+            
         </div>
 
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Modified At</label>
-            @Html.DisplayFor(model => model.ModifiedAt)
+            
+            
         </div>
-    </dl>
-    <a asp-action="Index" asp-controller="cars" class="btn btn-danger">Back</a>
+    
+    <a asp-action="Index" asp-controller="cars" class="button danger">Back</a>
 </div>
