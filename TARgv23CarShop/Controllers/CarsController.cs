@@ -214,5 +214,23 @@ namespace TARgv23CarShop.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> RemoveImage(CarImageViewModel file)
+		{
+			var dto = new FileToDatabaseDto()
+			{
+				Id = file.ImageId
+			};
+
+			var image = await _fileToDatabaseServices.RemoveImageFromDatabase(dto);
+
+			if (image == null)
+			{
+				return RedirectToAction(nameof(Index));
+			}
+
+			return RedirectToAction(nameof(Index));
+		}
+	}
 }

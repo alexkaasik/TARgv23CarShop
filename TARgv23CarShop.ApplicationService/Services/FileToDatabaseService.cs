@@ -43,5 +43,18 @@ namespace TARgv23CarShop.ApplicationService.Services
                 }
             }
         }
-    }
+
+		public async Task<FileToDatabase> RemoveImageFromDatabase(FileToDatabaseDto dto)    
+		{
+			var image = await _context.FileToDatabase
+				.Where(x => x.Id == dto.Id)
+				.FirstOrDefaultAsync();
+
+			_context.FileToDatabase.Remove(image);
+			await _context.SaveChangesAsync();
+
+			return image;
+		}
+
+	}
 }

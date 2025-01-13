@@ -6,5 +6,7 @@ namespace TARgv23CarShop.Core.ServiceInterface
     public interface IFileToDatabaseServices
     {
         void UploadFilesToDatabase(CarDto dto, Car domain);
-    }
+
+		Task<FileToDatabase> RemoveImageFromDatabase(FileToDatabaseDto dto);
+	}
 }
