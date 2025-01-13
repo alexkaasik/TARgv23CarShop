@@ -2,6 +2,7 @@ using TARgv23CarShop.Data;
 using Microsoft.EntityFrameworkCore;
 using TARgv23CarShop.Core.ServiceInterface;
 using TARgv23CarShop.ApplicationService.Services;
+using TARgv23CarShop.Core.Domain;
 
 namespace TARgv23CarShop
 {
@@ -16,6 +17,7 @@ namespace TARgv23CarShop
 
             // Setting up interfaces
             builder.Services.AddScoped<ICarServices, CarServices>();
+            builder.Services.AddScoped<IFileToDatabaseServices, FileToDatabaseService>();
 
             builder.Services.AddDbContext<TARgv23CarShopContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

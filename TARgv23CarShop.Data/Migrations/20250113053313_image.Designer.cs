@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TARgv23CarShop.Data;
 
@@ -11,9 +12,11 @@ using TARgv23CarShop.Data;
 namespace TARgv23CarShop.Data.Migrations
 {
     [DbContext(typeof(TARgv23CarShopContext))]
-    partial class TARgv23CarShopContextModelSnapshot : ModelSnapshot
+    [Migration("20250113053313_image")]
+    partial class image
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

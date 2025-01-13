@@ -13,5 +13,10 @@
         public DateTime CreatedAt { get; set; }
 
         public DateTime ModifiedAt { get; set; }
+
+        public List<IFormFile> Files { get; set; }
+
+        public List<CarImageViewModel> Image { get; set; }
+            = new List<CarImageViewModel>();
     }
 }

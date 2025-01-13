@@ -4,19 +4,23 @@ using TARgv23CarShop.Data;
 using TARgv23CarShop.Core.ServiceInterface;
 using TARgv23CarShop.Core.Domain;
 using TARgv23CarShop.Core.Dto;
+using System.Xml;
 
 namespace TARgv23CarShop.ApplicationService.Services
 {
     public class CarServices : ICarServices
     {
         private readonly TARgv23CarShopContext _context;
+        private readonly IFileToDatabaseServices _fileToDatabaseServices;
 
         public CarServices
             (
-                TARgv23CarShopContext context
+                TARgv23CarShopContext context,
+                IFileToDatabaseServices fileToDatabaseServices
             )
         {
             _context = context;
+            _fileToDatabaseServices = fileToDatabaseServices;
         }
 
         public async Task<Car> DetailsAsync(Guid id)
@@ -37,7 +41,12 @@ namespace TARgv23CarShop.ApplicationService.Services
             car.CarYear = dto.CarYear;
             car.CreatedAt = DateTime.Now;
             car.ModifiedAt = DateTime.Now;
-            
+
+            if (dto.Files != null)
+            {
+                _fileToDatabaseServices.UploadFilesToDatabase(dto, car);
+            }
+
 
             await _context.Cars.AddAsync(car);
             await _context.SaveChangesAsync();
@@ -55,6 +64,11 @@ namespace TARgv23CarShop.ApplicationService.Services
             domain.CarYear = dto.CarYear;
             domain.CreatedAt = dto.CreatedAt;
             domain.ModifiedAt = DateTime.Now;
+
+            if (dto.Files != null)
+            {
+                _fileToDatabaseServices.UploadFilesToDatabase(dto, domain);
+            }
 
             _context.Cars.Update(domain);
             await _context.SaveChangesAsync();

@@ -1,4 +1,6 @@
-﻿namespace TARgv23CarShop.Core.Dto
+﻿using Microsoft.AspNetCore.Http;
+
+namespace TARgv23CarShop.Core.Dto
 {
     public class CarDto
     {
@@ -13,5 +15,10 @@
         public DateTime CreatedAt { get; set; }
 
         public DateTime ModifiedAt { get; set; }
+
+        public List<IFormFile> Files { get; set; }
+
+        public IEnumerable<FileToDatabaseDto> Image { get; set; }
+            = new List<FileToDatabaseDto>();
     }
 }
