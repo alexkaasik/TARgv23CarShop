@@ -27,6 +27,7 @@ namespace TARgv23CarShop.CarTest
             Assert.NotNull(result);
         }
 
+        [Fact]
         public async Task GetDetails()
         {
             CarDto carDto = MockCarData();
@@ -64,26 +65,25 @@ namespace TARgv23CarShop.CarTest
 
         }
 
+        [Fact]
+        public async Task DeleteData()
+        {
+            CarDto realEstate = MockCarData();
+
+            var Car1 = await Svc<ICarServices>().Create(realEstate);
+            var Car2 = await Svc<ICarServices>().Create(realEstate);
+
+            var result = await Svc<ICarServices>().Delete((Guid)Car1.CarId);
+
+            Assert.NotEqual(result.CarId, Car2.CarId);
+        }
+
         private CarDto MockCarData()
         {
             CarDto car = new()
             {
                 CarName = "asd",
                 CarPrice = 123-2f,
-                CarYear = DateTime.Now,
-                CreatedAt = DateTime.Now,
-                ModifiedAt = DateTime.Now,
-            };
-
-            return car;
-        }
-
-        private CarDto MockCarDataToUpdate()
-        {
-            CarDto car = new()
-            {
-                CarName = "cna890wp",
-                CarPrice = 51097,
                 CarYear = DateTime.Now,
                 CreatedAt = DateTime.Now,
                 ModifiedAt = DateTime.Now,
