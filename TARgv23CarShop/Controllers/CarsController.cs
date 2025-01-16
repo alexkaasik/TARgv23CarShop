@@ -215,11 +215,11 @@ namespace TARgv23CarShop.Controllers
         }
 
         [HttpPost]
-        // Some reason Id is show's all zero's, need to find a fix later.
-        public async Task<IActionResult> DeleteConfirmation(Guid id)
+        // Why setting Id variable name show's null value but changing it to CarId then it's works? How does that work?
+        public async Task<IActionResult> DeleteConfirmation(Guid CarId)
         {
-
-            var car = await _carServices.Delete(id);
+            
+            var car = await _carServices.Delete(CarId);
 
             if (car == null)
             {
