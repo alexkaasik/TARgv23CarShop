@@ -6,6 +6,7 @@ using TARgv23CarShop.Core.Domain;
 using TARgv23CarShop.Core.Dto;
 using TARgv23CarShop.Models.Cars;
 using static System.Net.Mime.MediaTypeNames;
+using TARgv23CarShop.Data.Migrations;
 
 namespace TARgv23CarShop.Controllers
 {
@@ -189,6 +190,17 @@ namespace TARgv23CarShop.Controllers
                 return NotFound();
             }
 
+            var images = await _context.FileToDatabase
+                .Where(x => x.CarId == id)
+                .Select(y => new CarImageViewModel
+                {
+                    CarId = y.CarId,
+                    ImageId = y.Id,
+                    ImageData = y.ImageData,
+                    ImageTitle = y.ImageTitle,
+                    Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(y.ImageData))
+                }).ToArrayAsync();
+
             var vm = new CarDeleteViewModel();
 
             vm.CarId = car.CarId;
@@ -196,7 +208,8 @@ namespace TARgv23CarShop.Controllers
             vm.CarPrice = car.CarPrice;
             vm.CarYear = car.CarYear;
             vm.CreatedAt = car.CreatedAt;
-            vm.ModifiedAt = car.ModifiedAt; 
+            vm.ModifiedAt = car.ModifiedAt;
+            vm.Image.AddRange(images);
 
             return View(vm);
         }
@@ -205,7 +218,7 @@ namespace TARgv23CarShop.Controllers
         // Some reason Id is show's all zero's, need to find a fix later.
         public async Task<IActionResult> DeleteConfirmation(Guid id)
         {
-            
+
             var car = await _carServices.Delete(id);
 
             if (car == null)
